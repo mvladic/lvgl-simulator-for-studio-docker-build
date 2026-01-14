@@ -123,9 +123,17 @@ NUM_CORES=$(nproc)
 # Run emcmake cmake
 echo "Running emcmake cmake..."
 emcmake cmake ..
+if [ $? -ne 0 ]; then
+    echo "CMake configuration failed!"
+    exit 1
+fi
 
 # Build with make
 echo "Building with make -j$NUM_CORES..."
 make -j$NUM_CORES
+if [ $? -ne 0 ]; then
+    echo "Build failed!"
+    exit 1
+fi
 
 echo "Build completed!"
