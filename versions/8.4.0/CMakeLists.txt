@@ -5,6 +5,14 @@ set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -s USE_SDL=2")
 set(CMAKE_CXX_FLAGS "${CMAKE_C_FLAGS} -O2 -s USE_SDL=2")
 set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -s INITIAL_MEMORY=83886080 -sLLD_REPORT_UNDEFINED -s USE_SDL=2 -L/opt/freetype-2.14.1/build -lfreetype")
 
+# Add display dimensions as compile definitions if provided via environment
+if(DEFINED ENV{DISPLAY_WIDTH})
+    add_definitions(-DDISPLAY_WIDTH=$ENV{DISPLAY_WIDTH})
+endif()
+if(DEFINED ENV{DISPLAY_HEIGHT})
+    add_definitions(-DDISPLAY_HEIGHT=$ENV{DISPLAY_HEIGHT})
+endif()
+
 include_directories(
     ${PROJECT_SOURCE_DIR}
     /opt/freetype-2.14.1/include

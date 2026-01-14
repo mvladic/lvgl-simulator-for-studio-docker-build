@@ -76,8 +76,17 @@ lv_indev_t *kb_indev;
 
 int main(int argc, char ** argv)
 {
+#ifdef DISPLAY_WIDTH
+    monitor_hor_res = DISPLAY_WIDTH;
+#else
     monitor_hor_res = 800;
+#endif
+
+#ifdef DISPLAY_HEIGHT
+    monitor_ver_res = DISPLAY_HEIGHT;
+#else
     monitor_ver_res = 480;
+#endif
     printf("Starting with screen resolution of %dx%d px\n", monitor_hor_res, monitor_ver_res);
 
     /*Initialize LittlevGL*/
