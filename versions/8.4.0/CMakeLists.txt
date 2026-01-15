@@ -36,4 +36,4 @@ target_link_libraries(index
     lvgl
     lv_drivers
 )
-set_target_properties(index PROPERTIES LINK_FLAGS "--shell-file ${PROJECT_SOURCE_DIR}/index.html --preload-file ${PROJECT_SOURCE_DIR}/Oswald-Medium.ttf@/Oswald-Medium.ttf")
+set_target_properties(index PROPERTIES LINK_FLAGS "--shell-file ${PROJECT_SOURCE_DIR}/index.html")
