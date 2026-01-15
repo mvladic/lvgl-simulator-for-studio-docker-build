@@ -7,6 +7,8 @@ set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -s INITIAL_MEMORY=83886080
 
 add_compile_options(-Wno-unknown-warning-option)
 
+add_definitions(-DEEZ_SIMULATOR)
+
 # Add display dimensions as compile definitions if provided via environment
 if(DEFINED ENV{DISPLAY_WIDTH})
     add_definitions(-DDISPLAY_WIDTH=$ENV{DISPLAY_WIDTH})
