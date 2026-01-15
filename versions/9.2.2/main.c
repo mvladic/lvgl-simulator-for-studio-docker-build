@@ -57,9 +57,17 @@ void setup() {
 
     hal_init();
 
-    // ui_create_groups();
-    //lv_indev_set_group(enc_indev, groups.encoder_group);
-    //lv_indev_set_group(kb_indev, groups.keyboard_group);
+#if defined(ENCODER_GROUP) || defined(KEYBOARD_GROUP)
+    ui_create_groups();
+#endif
+ 
+#ifdef ENCODER_GROUP
+    lv_indev_set_group(enc_indev, ENCODER_GROUP); // groups.encoder_group
+#endif
+
+#ifdef KEYBOARD_GROUP
+    lv_indev_set_group(kb_indev, KEYBOARD_GROUP); // groups.keyboard_group
+#endif
     
     ui_init();
 }

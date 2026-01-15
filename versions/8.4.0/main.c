@@ -96,10 +96,19 @@ int main(int argc, char ** argv)
     hal_init();
 
     /*Init*/
-    ui_init();
+#if defined(ENCODER_GROUP) || defined(KEYBOARD_GROUP)
+    ui_create_groups();
+#endif
+ 
+#ifdef ENCODER_GROUP
+    lv_indev_set_group(enc_indev, ENCODER_GROUP); // groups.encoder_group
+#endif
 
-    //lv_indev_set_group(enc_indev, groups.encoder_group);
-    //lv_indev_set_group(kb_indev, groups.keyboard_group);
+#ifdef KEYBOARD_GROUP
+    lv_indev_set_group(kb_indev, KEYBOARD_GROUP); // groups.keyboard_group
+#endif
+
+    ui_init();
 
     emscripten_set_main_loop_arg(do_loop, NULL, 0, true);
 }

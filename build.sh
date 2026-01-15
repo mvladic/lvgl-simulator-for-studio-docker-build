@@ -8,6 +8,8 @@ cd "$SCRIPT_DIR"
 LVGL_VERSION=""
 DISPLAY_WIDTH=""
 DISPLAY_HEIGHT=""
+ENCODER_GROUP=""
+KEYBOARD_GROUP=""
 FONTS_FILE=""
 
 while [[ $# -gt 0 ]]; do
@@ -22,6 +24,14 @@ while [[ $# -gt 0 ]]; do
             ;;
         --display-height=*)
             DISPLAY_HEIGHT="${1#*=}"
+            shift
+            ;;
+        --encoder-group=*)
+            ENCODER_GROUP="${1#*=}"
+            shift
+            ;;
+        --keyboard-group=*)
+            KEYBOARD_GROUP="${1#*=}"
             shift
             ;;
         --fonts=*)
@@ -49,6 +59,15 @@ fi
 
 if [ -n "$DISPLAY_HEIGHT" ]; then
     export DISPLAY_HEIGHT
+fi
+
+# Set environment variables if provided
+if [ -n "$ENCODER_GROUP" ]; then
+    export ENCODER_GROUP
+fi
+
+if [ -n "$KEYBOARD_GROUP" ]; then
+    export KEYBOARD_GROUP
 fi
 
 # Process fonts file if provided
