@@ -11,6 +11,7 @@ DISPLAY_HEIGHT=""
 ENCODER_GROUP=""
 KEYBOARD_GROUP=""
 FONTS_FILE=""
+SKIP_EMCMAKE_CMAKE=""
 
 while [[ $# -gt 0 ]]; do
     case $1 in
@@ -36,6 +37,10 @@ while [[ $# -gt 0 ]]; do
             ;;
         --fonts=*)
             FONTS_FILE="${1#*=}"
+            shift
+            ;;
+        --skip-emcmake-cmake)
+            SKIP_EMCMAKE_CMAKE="yes"
             shift
             ;;
         *)
@@ -167,16 +172,20 @@ cd build
 NUM_CORES=$(nproc)
 
 # Run emcmake cmake
-echo "Running emcmake cmake..."
-if [ -n "$FONTS_PRELOAD" ]; then
-    # Pass fonts flags through CMAKE_EXE_LINKER_FLAGS so they're actually used
-    emcmake cmake .. -DCMAKE_EXE_LINKER_FLAGS="$FONTS_PRELOAD"
+if [ -z "$SKIP_EMCMAKE_CMAKE" ]; then
+    echo "Running emcmake cmake..."
+    if [ -n "$FONTS_PRELOAD" ]; then
+        # Pass fonts flags through CMAKE_EXE_LINKER_FLAGS so they're actually used
+        emcmake cmake .. -DCMAKE_EXE_LINKER_FLAGS="$FONTS_PRELOAD"
+    else
+        emcmake cmake ..
+    fi
+    if [ $? -ne 0 ]; then
+        echo "CMake configuration failed!"
+        exit 1
+    fi
 else
-    emcmake cmake ..
-fi
-if [ $? -ne 0 ]; then
-    echo "CMake configuration failed!"
-    exit 1
+    echo "Skipping emcmake cmake step..."
 fi
 
 # Build with make
