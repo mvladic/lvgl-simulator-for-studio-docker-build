@@ -30,9 +30,9 @@ include_directories(
     /opt/freetype-2.14.1/include
 )
 
-set(CONFIG_LV_BUILD_DEMOS OFF)
-set(CONFIG_LV_BUILD_EXAMPLES OFF)
-set(CONFIG_LV_USE_THORVG_INTERNAL OFF)
+set(CONFIG_LV_BUILD_DEMOS 0)
+set(CONFIG_LV_BUILD_EXAMPLES 0)
+set(CONFIG_LV_USE_THORVG_INTERNAL 0)
 
 add_subdirectory(lvgl)
 
