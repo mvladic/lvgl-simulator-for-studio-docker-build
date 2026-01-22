@@ -87,7 +87,7 @@ if [ -n "$FONTS_FILE" ] && [ -f "$FONTS_FILE" ]; then
             # Extract directory path without leading slash for preload-file
             font_dir=$(dirname "$font_path")
             # Construct the preload flag: --preload-file /project/fonts@/fonts
-            FONTS_PRELOAD="$FONTS_PRELOAD --preload-file /project${font_path}@${font_path}"
+            FONTS_PRELOAD="$FONTS_PRELOAD --preload-file /project/${font_path}@${font_path}"
             echo "  Will embed: ${font_path}"
         fi
     done < "$FONTS_FILE"
