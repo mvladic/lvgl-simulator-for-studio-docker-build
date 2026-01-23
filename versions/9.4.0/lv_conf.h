@@ -1199,7 +1199,7 @@
 #define LV_USE_XML    0
 
 /** 1: Enable text translation support */
-#define LV_USE_TRANSLATION 0
+#define LV_USE_TRANSLATION 1
 
 /*1: Enable color filter style*/
 #define LV_USE_COLOR_FILTER     0
